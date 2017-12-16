@@ -1,1 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+/* global styles */
+@import url('https://fonts.googleapis.com/css?family=Karla');
+
+:root {
+  --bg-color-1: #3F7CA8;
+  --bg-color-2: #F1E758;
+  --text-primary: #292929;
+  --text-secondary: #9e9ea0;
+  --link-primary: #292929;
+  --link-primary-hover: rgba(41, 41, 41, 0.67);
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  overflow: hidden;
+  /* background: linear-gradient(145deg,#3F7CA8,#F1E758); */
+  background: linear-gradient(150deg, var(--bg-color-1), var(--bg-color-2));
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  font-family: 'Karla', sans-serif;
+  text-rendering: optimizeLegibility!important;
+  -webkit-font-smoothing: antialiased!important;
+  font-smoothing: antialiased!important;
+}
+
+#app {
+  transform: matrix(1, 0, 0, 1, 0, 0);
+
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 1.25rem 2.5vw;
+}
+
+#app h1, h2, h3 {
+  color: var(--text-primary);
+}
+
+#app a {
+  color: var(--link-primary);
+  cursor: pointer;
+  text-decoration: overline;
+  transition: all .15s ease-out 0s;
+}
+
+#app a:hover {
+  color: var(--link-primary-hover);
+}
+
+footer {
+  width: 100%;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: relative;
+  padding: .625rem 2.5vw;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+footer.footer-fixed {
+  position: fixed;
+  bottom: 10px;
+}
+
+footer .footer-left {
+  display: flex;
+  flex: 1;
+  text-align: left;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+
+footer .footer-right {
+  display: flex;
+  flex: 1;
+  text-align: right;
+  align-items: baseline;
+  justify-content: flex-start;
+  right: 0;
+}
