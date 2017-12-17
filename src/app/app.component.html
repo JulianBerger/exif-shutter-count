@@ -1,19 +1,125 @@
-<div id="app">
+<div id="app"
+     ng2FileDrop
+     [ngClass]="{'file-over': isFileOverPage}"
+     (fileOver)="fileOverPage($event)"
+     (onFileDrop)="fileDropped($event)"
+     [uploader]="uploader">
 
   <div class="info-container">
     <h2>Upload a RAW/JPEG from Your Camera to get your Shutter Count</h2>
     <a href="#">List of supported Cameras</a>
   </div>
 
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1257 748.53" height="30%">
+    <g id="Cam" class="cls-1">
+      <rect id="shutter_release" class="cls-15" x="188" width="64" height="17" rx="8.5" ry="8.5"/>
+      <rect class="cls-2" x="145" y="5" width="150" height="65" rx="12" ry="12"/>
+      <rect class="cls-3" x="318" y="12" width="198" height="58" rx="12" ry="12"/>
+      <path class="cls-4"
+            d="M1579,388V177.21A12.14,12.14,0,0,0,1567,165H856.74c-4.85.11-8.74,3.19-8.74,7v32.67a12.14,12.14,0,0,1-12,12.2H333l-.13.14A11,11,0,0,0,322,228V388"
+            transform="translate(-322 -160)"/>
+      <path class="cls-5" d="M322,388V896.33a12.14,12.14,0,0,0,12,12.2H1567a12.14,12.14,0,0,0,12-12.2V388"
+            transform="translate(-322 -160)"/>
+      <rect id="rangefinder_out" class="cls-6" x="928" y="33" width="234" height="169" rx="12" ry="12"/>
+      <rect id="rangefinder_in" class="cls-7" x="928" y="53" width="234" height="128" rx="12" ry="12"/>
+      <rect id="sec_rangefinder_out" class="cls-8" x="378" y="89" width="93" height="64" rx="12" ry="12"/>
+      <rect id="sec_rangefinder_in" class="cls-9" x="391" y="99" width="66" height="44" rx="12" ry="12"/>
+      <circle id="front_button_out" class="cls-10" cx="334" cy="247" r="41"/>
+      <circle id="font_button_in" class="cls-11" cx="334" cy="247" r="30"/>
+      <circle id="lens_bay_out" class="cls-12" cx="716" cy="436" r="244"/>
+      <path id="lens_bay_button_cover" class="cls-12"
+            d="M800.46,540H741a52.79,52.79,0,0,0-41,56c.25,3.64,1.78,20.57,16,33a47.31,47.31,0,0,0,24,11h74.25L854,596l-22-56Z"
+            transform="translate(-322 -160)"/>
+      <circle id="lens_button" class="cls-13" cx="431" cy="430" r="35"/>
+      <circle id="lens_cover" cx="716" cy="436" r="228"
+              ng2FileDrop
+              [ngClass]="{'file-in-drop-zone': isFileOverDropZone, 'cls-14':true}"
+              (fileOver)="fileOverUploader($event)"
+              (onFileDrop)="fileDropped($event)"
+              [uploader]="uploader"
+              class="upload-drop-zone"/>
+
+      <text class="cls-16" transform="translate(533.57 494.3) rotate(-103.8)">D</text>
+      <text class="cls-16" transform="translate(527.8 469.57) rotate(-98.2)">r</text>
+      <text class="cls-16" transform="translate(525.89 457.88) rotate(-93.39)">o</text>
+      <text class="cls-16" transform="translate(524.61 437.19) rotate(-87.08)">p</text>
+      <text class="cls-16" transform="translate(525.97 415.49) rotate(-82.65)"></text>
+      <text class="cls-16" transform="translate(526.78 407.7) rotate(-78.77)">y</text>
+      <text class="cls-16" transform="translate(530.04 390.62) rotate(-73.07)">o</text>
+      <text class="cls-16" transform="matrix(0.39, -0.92, 0.92, 0.39, 536.06, 370.73)">u</text>
+      <text class="cls-16" transform="translate(544.46 351.55) rotate(-61.8)">r</text>
+      <text class="cls-16" transform="matrix(0.52, -0.85, 0.85, 0.52, 550.39, 340.61)"></text>
+      <text class="cls-16" transform="translate(554.51 333.78) rotate(-56.23)">I</text>
+      <text class="cls-16" transform="translate(559.03 325.88) rotate(-50.13)">m</text>
+      <text class="cls-16" transform="matrix(0.74, -0.68, 0.68, 0.74, 579.7, 301.74)">a</text>
+      <text class="cls-16" transform="matrix(0.8, -0.6, 0.6, 0.8, 592.97, 289.36)">g</text>
+      <text class="cls-16" transform="translate(609.94 276.71) rotate(-30.7)">e</text>
+      <text class="cls-16" transform="translate(626.49 267.1) rotate(-26.63)"></text>
+      <text class="cls-16" transform="translate(633.32 263.37) rotate(-22.29)">h</text>
+      <text class="cls-16" transform="translate(652.77 255.42) rotate(-16.32)">e</text>
+      <text class="cls-16" transform="translate(671.1 250.17) rotate(-11.65)">r</text>
+      <text class="cls-16" transform="matrix(0.99, -0.12, 0.12, 0.99, 682.7, 247.61)">e</text>
+      <text class="cls-16" transform="translate(701.25 245.46) rotate(-3.25)">.</text>
+      <text class="cls-16" transform="matrix(1, -0.02, 0.02, 1, 709.03, 245.01)"></text>
+      <text class="cls-16" transform="matrix(1, 0.06, -0.06, 1, 716.86, 244.64)">R</text>
+      <text class="cls-16" transform="translate(737.31 245.72) rotate(9.93)">A</text>
+      <text class="cls-16" transform="translate(758.13 248.85) rotate(17.64)">W</text>
+      <text class="cls-16" transform="matrix(0.92, 0.4, -0.4, 0.92, 788.77, 259.24)"></text>
+      <text class="cls-16" transform="matrix(0.88, 0.47, -0.47, 0.88, 796.02, 262.13)">o</text>
+      <text class="cls-16" transform="translate(814.38 272.07) rotate(32.94)">r</text>
+      <text class="cls-16" transform="translate(824.84 278.97) rotate(35.28)"></text>
+      <text class="cls-16" transform="matrix(0.78, 0.63, -0.63, 0.78, 831.26, 283.45)">J</text>
+      <text class="cls-16" transform="matrix(0.72, 0.7, -0.7, 0.72, 842.14, 292.1)">P</text>
+      <text class="cls-16" transform="translate(856.55 306.16) rotate(50.1)">E</text>
+      <text class="cls-16" transform="matrix(0.55, 0.83, -0.83, 0.55, 868.58, 320.23)">G</text>
+      <text class="cls-16" transform="translate(881.9 341.03) rotate(61.49)"></text>
+      <text class="cls-16" transform="translate(885.81 347.81) rotate(65.49)">S</text>
+      <text class="cls-16" transform="translate(893.62 364.7) rotate(71.4)">u</text>
+      <text class="cls-16" transform="translate(900.31 384.43) rotate(77.72)">p</text>
+      <text class="cls-16" transform="translate(904.93 405.44) rotate(84.12)">p</text>
+      <text class="cls-16" transform="translate(907.15 426.86) rotate(90.43)">o</text>
+      <text class="cls-16" transform="matrix(-0.09, 1, -1, -0.09, 906.83, 447.74)">r</text>
+      <text class="cls-16" transform="matrix(-0.16, 0.99, -0.99, -0.16, 905.57, 460.96)">t</text>
+      <text class="cls-16" transform="translate(903.75 473.01) rotate(104.06)">e</text>
+      <text class="cls-16" transform="translate(899.26 491.35) rotate(110.13)">d</text>
+      <text class="cls-16" transform="translate(891.62 511.49) rotate(114.67)">!</text>
+      <text class="cls-17" transform="translate(625 115)">Shutter.cc</text>
+    </g>
+  </svg>
+
+</div>
+
+<div *ngIf="isFileOverPage" id="file-over">
+  <h2>Drop the File here!</h2>
+</div>
+
+<div id="info"
+     [ngClass]="{'open': (infoCardState > 0)}">
+  <div class="info-card">
+
+    <div *ngIf="infoCardState == InfoCardContent.CameraInfo" id="info-camera-info">
+      <h1>DAT CAMERA</h1>
+    </div>
+
+    <div *ngIf="infoCardState == InfoCardContent.About" id="info-about">
+      <h1>ABOUT</h1>
+    </div>
+
+    <div class="info-close-btn" (click)="toggleInfoCard(InfoCardContent.Closed)">
+      <span>x</span>
+    </div>
+
+  </div>
 </div>
 
 <footer class="footer-fixed">
 
   <div class="footer-left">
-    <span>Open Source © 2017 Julian Berger</span>
+    <span><a href="https://github.com/JulianBerger/exif-shutter-count" target="_blank">Open Source</a> © 2018 <a
+        href="https://julianberger.me" target="_blank">Julian Berger</a></span>
   </div>
 
-  <div class="footer-right">
+  <div class="footer-right link-list">
     <span>Link 1</span>
     <span>Link 2</span>
     <span>Link 3</span>

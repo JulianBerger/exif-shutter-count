@@ -1,14 +1,19 @@
 /* global styles */
 @import url('https://fonts.googleapis.com/css?family=Karla');
 
+/* VARIABLES */
+
 :root {
   --bg-color-1: #3F7CA8;
   --bg-color-2: #F1E758;
+  --info-card-bg: #3fa88c;
   --text-primary: #292929;
   --text-secondary: #9e9ea0;
   --link-primary: #292929;
   --link-primary-hover: rgba(41, 41, 41, 0.67);
 }
+
+/* GENERAL */
 
 html {
   height: 100%;
@@ -34,6 +39,8 @@ body {
   font-smoothing: antialiased!important;
 }
 
+/* APP */
+
 #app {
   transform: matrix(1, 0, 0, 1, 0, 0);
 
@@ -47,10 +54,15 @@ body {
   align-items: center;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 1.25rem 2.5vw;
+  padding: 1vh 2vw;
+  margin-top: -10vh;
 }
 
-#app h1, h2, h3 {
+#app.file-over {
+  filter: grayscale(0.8) blur(10px);
+}
+
+#app span, h1, h2, h3 {
   color: var(--text-primary);
 }
 
@@ -65,13 +77,86 @@ body {
   color: var(--link-primary-hover);
 }
 
+#app .info-container {
+  margin: 5vh 0;
+}
+
+/* FILE OVER PAGE */
+
+#file-over {
+  z-index: 10;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 10vh auto;
+  text-align: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* INFO CONTAINER */
+
+#info {
+  background-color: rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  z-index: 100;
+}
+
+#info.open {
+  display: flex;
+}
+
+#info .info-card {
+  position: fixed;
+  height: calc(100% - 6em);
+  width: calc(100% - 6em);
+  box-shadow: 0 20px 40px 0 rgba(0,0,0,.33);
+  border-radius: 3px;
+  top: 3em;
+  left: 3em;
+  background-color: var(--info-card-bg);
+}
+
+#info .info-close-btn {
+  position: fixed;
+  top: 4em;
+  right: 4.6em;
+}
+
+#info .info-close-btn span {
+  color: var(--link-primary);
+  cursor: pointer;
+  transition: all .15s ease-out 0s;
+  font-weight: bolder;
+  font-size: 17pt;
+}
+
+#info .info-close-btn span:hover {
+  color: var(--link-primary-hover);
+}
+
+/* FOOTER */
+
 footer {
   width: 100%;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
   position: relative;
-  padding: .625rem 2.5vw;
+  padding: 1vh 2vw;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   display: flex;
@@ -97,4 +182,105 @@ footer .footer-right {
   align-items: baseline;
   justify-content: flex-start;
   right: 0;
+}
+
+footer span, h1, h2, h3 {
+  color: var(--text-primary);
+}
+
+footer .link-list > * {
+  margin-left: 15px;
+}
+
+footer a {
+  color: var(--link-primary);
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all .15s ease-out 0s;
+}
+
+footer a:hover {
+  color: var(--link-primary-hover);
+}
+
+/* CAMERA SVG */
+
+.cls-1 {
+  opacity: 0.78;
+}
+
+.cls-2 {
+  fill: #060606;
+}
+
+.cls-3 {
+  fill: #060606;
+}
+
+.cls-4 {
+  fill: #1d1d1d;
+}
+
+.cls-5 {
+  fill: #404040;
+}
+
+.cls-6 {
+  fill: #0f0f0f;
+}
+
+.cls-7 {
+  fill: #454545;
+}
+
+.cls-8 {
+  fill: #0f0f0f;
+}
+
+.cls-9 {
+  fill: #454545;
+}
+
+.cls-10 {
+  fill: #101111;
+}
+
+.cls-11 {
+  fill: #0d0d0e;
+}
+
+.cls-12 {
+  fill: #5b5b5b;
+}
+
+.cls-13 {
+  fill: #212121;
+}
+
+.cls-14 {
+  fill: #484b4c;
+}
+
+.file-in-drop-zone {
+  fill: #252627 !important;
+}
+
+.cls-15 {
+  fill: #ea1313;
+}
+
+.cls-16 {
+  font-size: 39.08px;
+  fill: #0f0f0f;
+  font-family: 'Karla', sans-serif;
+  font-weight: bold;
+  user-select: none;
+}
+
+.cls-17 {
+  font-size: 45px;
+  fill: #0f0f0f;
+  font-family: 'Karla', sans-serif;
+  font-weight: bolder;
 }
