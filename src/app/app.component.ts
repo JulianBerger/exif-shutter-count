@@ -12,7 +12,7 @@ enum InfoCardContent {
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  public uploadURL = 'https://localhost:8080/api/upload';
+  public uploadURL = 'http://localhost:8080/api/upload';
   public uploader: FileUploader;
   public isFileOverDropZone = false;
   public isFileOverPage = false;
