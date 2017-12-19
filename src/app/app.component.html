@@ -97,11 +97,21 @@
      [ngClass]="{'open': (infoCardState > 0)}">
   <div class="info-card">
 
-    <div *ngIf="infoCardState == InfoCardContent.CameraInfo" id="info-camera-info">
+    <div *ngIf="infoCardState == InfoCardContent.ExifData" id="info-exif-data" class="info-card-content">
+      <h1>{{ exifData?.Make || '' }}</h1>
+
+      <h4>Shutter Count: {{ shutterCount }}</h4> <h2 *ngIf="shutterCount">{{ toWords(shutterCount) }}</h2>
+
+      <a href="#" (click)="showExif = !showExif">Show Exif</a>
+
+      <ul *ngIf="showExif" class="exif-list" [innerHTML]="formatedExifList(exifData)"></ul>
+    </div>
+
+    <div *ngIf="infoCardState == InfoCardContent.CameraInfo" id="info-camera-info" class="info-card-content">
       <h1>DAT CAMERA</h1>
     </div>
 
-    <div *ngIf="infoCardState == InfoCardContent.About" id="info-about">
+    <div *ngIf="infoCardState == InfoCardContent.About" id="info-about" class="info-card-content">
       <h1>ABOUT</h1>
     </div>
 

@@ -11,6 +11,7 @@
   --text-secondary: #9e9ea0;
   --link-primary: #292929;
   --link-primary-hover: rgba(41, 41, 41, 0.67);
+  --border-color-1: #ffffff14;
 }
 
 /* GENERAL */
@@ -147,6 +148,59 @@ body {
 #info .info-close-btn span:hover {
   color: var(--link-primary-hover);
 }
+
+#info .info-card-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  padding: 1em 2.4em;
+
+}
+
+/* EXIF MARKUP */
+.exif-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  max-height: 70%;
+  overflow: auto;
+}
+
+.exif-list div {
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  border-top: 1px solid var(--border-color-1);
+}
+
+.exif-key {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 35%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  font-weight: bold;
+}
+
+.exif-val {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 65%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
 
 /* FOOTER */
 

@@ -4,10 +4,18 @@ const koaBody = require('koa-body');
 const cors = require('@koa/cors');
 const Koa = require('koa');
 const app = new Koa();
+const os = require('os');
+const path = require('path');
 const fs = require('fs-extra');
-const gm = require('gm');
+
+const { ExifTool } = require("exiftool-vendored");
+const exiftool = new ExifTool();
 
 const PORT = 8080;
+
+exiftool.version().then( (version) => {
+    console.log(`We're running ExifTool v${version}`);
+});
 
 app.use(logger());
 app.use(cors({ credentials: true }));
@@ -24,16 +32,32 @@ app.use( (ctx, next) => new Promise( (resolve, reject) => {
 
     const file = ctx.request.body.files.file;
     console.log(file);
+    const tmpFilePath = path.join(os.tmpdir(), Math.random().toString() + file.name);
     const readStream = fs.createReadStream(file.path);
+    const writestream = fs.createWriteStream(tmpFilePath);
+    readStream.pipe(writestream);
+    console.log('uploading %s -> %s', file.name, writestream.path);
 
-    gm(readStream, 'img.jpg')
-        .identify((err, value) => {
-            console.log('finishhh');
-            console.log(err);
-            console.log(value);
-            ctx.body = value;
-            resolve();
-        });
+    exiftool
+        .read(tmpFilePath)
+        .then((tags /*: Tags */) => {
+          // remove file
+          fs.unlink(tmpFilePath, (err) => {
+            if(err) return console.error(`Remove File Error: ${err}`);
+            console.log(`Removed File: ${tmpFilePath}`);
+          });
+
+          console.log(`Make: ${tags.Make}, Model: ${tags.Model}, Errors: ${tags.errors}`);
+          console.log(`All Tags: ${tags}`);
+
+          let response = {};
+          response.exif = tags;
+
+          ctx.body = response;
+          resolve();
+        })
+        .catch(err => console.error("Something terrible happened: ", err))
+
 })
 );
 
