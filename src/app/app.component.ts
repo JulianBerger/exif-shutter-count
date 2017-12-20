@@ -63,6 +63,9 @@ export class AppComponent {
       response = JSON.parse(response);
       this.exifData = response.exif;
 
+      // Clear uploader queue
+      this.uploader.clearQueue();
+
       console.log(this.exifData);
 
       // TODO Check for valid exif
@@ -72,9 +75,22 @@ export class AppComponent {
         } else if (this.exifData['ImageCount2']) {
           this.shutterCount = parseInt(this.exifData['ImageCount2'], 10);
         }
-      } else if (this.exifData['Make'] === 'SONY') {
-
+      } else if (this.exifData['Make'] === 'NIKON CORPORATION') {
+        if (this.exifData['ShutterCount']) {
+          this.shutterCount = parseInt(this.exifData['ShutterCount'], 10);
+        }
+      } else if (this.exifData['Make'] === 'RICOH IMAGING COMPANY, LTD.') {
+        if (this.exifData['ShutterCount']) {
+          this.shutterCount = parseInt(this.exifData['ShutterCount'], 10);
+        }
       }
+
+      // Format Date/Time
+      Object.keys(this.exifData).forEach((key) => {
+        if (this.exifData[key]['year']) {
+          console.log('got date: ' + JSON.stringify(this.exifData[key]));
+        }
+      });
 
       console.log(`Make: ${this.exifData['Make']}, Camera: ${this.exifData['Model']}, ShutterCount: ${this.shutterCount}`);
 
@@ -86,7 +102,6 @@ export class AppComponent {
 
   public toggleInfoCard(content: InfoCardContent) {
     this.infoCardState = content;
-    //this.infoCardOpened = open;
   }
 
   public toWords(s: any) {

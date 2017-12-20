@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "@koa/cors": "^2.2.1",
+    "angular2-moment": "^1.7.0",
     "core-js": "^2.4.1",
     "countup.js-angular2": "^1.0.0",
     "exiftool-vendored": "^4.12.1",

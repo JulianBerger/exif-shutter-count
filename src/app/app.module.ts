@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FileUploadModule } from 'ng2-file-upload';
+import { MomentModule } from 'angular2-moment';
 
 import { AppComponent } from './app.component';
 
@@ -11,7 +12,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    FileUploadModule
+    FileUploadModule,
+    MomentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

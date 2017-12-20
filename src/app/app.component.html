@@ -98,9 +98,22 @@
   <div class="info-card">
 
     <div *ngIf="infoCardState == InfoCardContent.ExifData" id="info-exif-data" class="info-card-content">
-      <h1>{{ exifData?.Make || '' }}</h1>
+      <h1>{{ exifData?.Model || '' }}</h1>
 
-      <h4>Shutter Count: {{ shutterCount }}</h4> <h2 *ngIf="shutterCount">{{ toWords(shutterCount) }}</h2>
+      <h2 *ngIf="shutterCount">Shutter Count: {{ shutterCount }}</h2>
+      <h4 *ngIf="shutterCount">In Words: {{ toWords(shutterCount) }}</h4>
+      <h2 *ngIf="!shutterCount">Could not find Shutter Count Information in EXIF Data... 😥</h2>
+
+      <hr>
+      <h4>{{ (exifData?.DateTimeOriginal.day + '/' +
+        exifData?.DateTimeOriginal.month + '/' +
+        exifData?.DateTimeOriginal.year + '-' +
+        exifData?.DateTimeOriginal.hour + ':' +
+        exifData?.DateTimeOriginal.minute) | amParse:'DD/MM/YYYY-h:mm' | amDateFormat:'LL'}}</h4>
+      <h4>{{ exifData?.FocalLength }}</h4>
+      <h4>f/{{ exifData?.Aperture }}</h4>
+      <h4>ISO{{ exifData?.ISO }}</h4>
+      <h4>{{ exifData?.ShutterSpeed }}s</h4>
 
       <a href="#" (click)="showExif = !showExif">Show Exif</a>
 
@@ -108,7 +121,7 @@
     </div>
 
     <div *ngIf="infoCardState == InfoCardContent.CameraInfo" id="info-camera-info" class="info-card-content">
-      <h1>DAT CAMERA</h1>
+      <h1>CAMERAINFO</h1>
     </div>
 
     <div *ngIf="infoCardState == InfoCardContent.About" id="info-about" class="info-card-content">
