@@ -1,4 +1,6 @@
 import {AfterViewChecked, Component} from '@angular/core';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+
 import { FileUploader } from 'ng2-file-upload';
 
 enum InfoCardContent {
@@ -10,9 +12,38 @@ enum InfoCardContent {
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  animations: [
+    trigger('reveal-up', [
+      transition('* => true', [
+        animate(600, style({ transform: 'translateY(0)', opacity: 1 }))
+      ]),
+      state('false',
+        style({ transform: 'translateY(100vh)', opacity: 0 })
+      )
+    ]),
+    trigger('reveal-up-2', [
+      transition('* => true', [
+        animate(600, style({ transform: 'translateY(0)', opacity: 1 }))
+      ]),
+      state('false',
+        style({ transform: 'translateY(200vh)', opacity: 0 })
+      )
+    ]),
+    trigger('card-show', [
+      transition('* => true', [
+        animate(666, style({ transform: 'translateY(0)', opacity: 1 }))
+      ]),
+      transition('true => false', [
+        animate(333, style({ transform: 'translateY(300vh)', opacity: 0 }))
+      ]),
+      state('false',
+        style({ transform: 'translateY(300vh)', opacity: 0 })
+      )
+    ])
+  ]
 })
-export class AppComponent implements AfterViewChecked{
+export class AppComponent implements AfterViewChecked {
   public uploadURL = 'http://localhost:8080/api/upload';
   public uploader: FileUploader;
   public isFileOverDropZone = false;
@@ -35,9 +66,7 @@ export class AppComponent implements AfterViewChecked{
   }
 
   ngAfterViewChecked() {
-    setTimeout(() => {
       this.pageLoaded = true;
-    }, 2000);
   }
 
   public fileOverUploader(e: any): void {

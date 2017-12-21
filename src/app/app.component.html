@@ -5,12 +5,12 @@
      (onFileDrop)="fileDropped($event)"
      [uploader]="uploader">
 
-  <div class="info-container" [ngClass]="{'reveal': pageLoaded}">
+  <div [@reveal-up]="pageLoaded" class="info-container">
     <h2>Upload a RAW/JPEG from Your Camera to get your Shutter Count</h2>
     <a href="#" (click)="toggleInfoCard(InfoCardContent.CameraInfo)">List of supported Cameras</a>
   </div>
 
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1257 748.53" height="30%">
+  <svg [@reveal-up-2]="pageLoaded" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1257 748.53" height="30%">
     <g id="Cam" class="cls-1">
       <rect id="shutter_release" class="cls-15" x="188" width="64" height="17" rx="8.5" ry="8.5"/>
       <rect class="cls-2" x="145" y="5" width="150" height="65" rx="12" ry="12"/>
@@ -94,7 +94,7 @@
 </div>
 
 <div id="info"
-     [ngClass]="{'open': (infoCardState > 0)}">
+     [@card-show]="infoCardState > 0">
   <div class="info-card">
 
     <div *ngIf="infoCardState == InfoCardContent.ExifData" id="info-exif-data" class="info-card-content">
