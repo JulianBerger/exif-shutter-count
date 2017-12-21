@@ -16,29 +16,72 @@ enum InfoCardContent {
   animations: [
     trigger('reveal-up', [
       transition('* => true', [
-        animate(600, style({ transform: 'translateY(0)', opacity: 1 }))
+        animate('0.6s ease-in', style({
+          transform: 'translateY(0) scale(1)',
+          opacity: 1
+        }))
       ]),
       state('false',
-        style({ transform: 'translateY(100vh)', opacity: 0 })
+        style({
+          transform: 'translateY(100vh) scale(0.7)',
+          opacity: 0
+        })
       )
     ]),
     trigger('reveal-up-2', [
       transition('* => true', [
-        animate(600, style({ transform: 'translateY(0)', opacity: 1 }))
+        animate('0.6s ease-in', style({
+          transform: 'translateY(0) scale(1)',
+          opacity: 1
+        }))
       ]),
       state('false',
-        style({ transform: 'translateY(200vh)', opacity: 0 })
+        style({
+          transform: 'translateY(200vh) scale(0.7)',
+          opacity: 0
+        })
       )
     ]),
     trigger('card-show', [
       transition('* => true', [
-        animate(666, style({ transform: 'translateY(0)', opacity: 1 }))
+        animate('0.4s ease-in', style({
+          transform: 'translateY(0) scale(1)',
+          opacity: 1
+        }))
       ]),
       transition('true => false', [
-        animate(333, style({ transform: 'translateY(300vh)', opacity: 0 }))
+        animate('0.2s ease-out', style({
+          transform: 'translateY(100vh) scale(0.3)',
+          opacity: 0
+        }))
       ]),
       state('false',
-        style({ transform: 'translateY(300vh)', opacity: 0 })
+        style({
+          transform: 'translateY(100vh)',
+          opacity: 0
+        })
+      )
+    ]),
+    trigger('exif-card-reveal', [
+      transition('* => true', [
+        animate('0.15s 0.8s ease-in', style({ transform: 'scale(1)', opacity: 1 }))
+      ]),
+      transition('true => false', [
+        animate('0.2s 0.2s ease-out', style({ transform: 'scale(0.8)', opacity: 0 }))
+      ]),
+      state('false',
+        style({ transform: 'scale(0.8)', opacity: 0 })
+      )
+    ]),
+    trigger('exif-show-btn', [
+      transition('* => true', [
+        animate('0.15s ease-in', style({ transform: 'translateY(0vh) scale(1)'}))
+      ]),
+      transition('true => false', [
+        animate('0.2s ease-out', style({ transform: 'translateY(18vh) scale(1.38)' }))
+      ]),
+      state('false',
+        style({ transform: 'translateY(18vh) scale(1.38)' })
       )
     ])
   ]
@@ -46,6 +89,7 @@ enum InfoCardContent {
 export class AppComponent implements AfterViewChecked {
   public uploadURL = 'http://localhost:8080/api/upload';
   public uploader: FileUploader;
+  public fileName = '';
   public isFileOverDropZone = false;
   public isFileOverPage = false;
   public response = '';
@@ -93,6 +137,7 @@ export class AppComponent implements AfterViewChecked {
 
     if (this.uploader.queue) {
       this.uploader.queue[0].upload();
+      this.fileName = this.uploader.queue[0]._file.name;
     }
 
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) =>  {
@@ -203,7 +248,7 @@ export class AppComponent implements AfterViewChecked {
       returnStr += key.toString();
       returnStr += '</li>';
       returnStr += '<li class="exif-val">';
-      returnStr += JSON.stringify(exif[key]).toString();
+      returnStr += exif[key].toString();
       returnStr += '</li>';
       returnStr += '</div>';
     });

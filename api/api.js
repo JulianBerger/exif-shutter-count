@@ -24,7 +24,7 @@ app.use(koaBody({ multipart: true }));
 // handle uploads
 app.use( (ctx, next) => new Promise( (resolve, reject) => {
     // ignore non-POSTs
-    if ('POST' != ctx.method) {
+    if ('POST' !== ctx.method) {
         console.log(ctx.method);
         resolve();
         return next();
@@ -40,7 +40,7 @@ app.use( (ctx, next) => new Promise( (resolve, reject) => {
 
     exiftool
         .read(tmpFilePath)
-        .then((tags /*: Tags */) => {
+        .then((tags) => {
           // remove file
           fs.unlink(tmpFilePath, (err) => {
             if(err) return console.error(`Remove File Error: ${err}`);

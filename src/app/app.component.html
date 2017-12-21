@@ -5,12 +5,25 @@
      (onFileDrop)="fileDropped($event)"
      [uploader]="uploader">
 
-  <div [@reveal-up]="pageLoaded" class="info-container">
+  <div *ngIf="!uploader.isUploading"
+       [@reveal-up]="pageLoaded"
+       class="info-container">
     <h2>Upload a RAW/JPEG from Your Camera to get your Shutter Count</h2>
     <a href="#" (click)="toggleInfoCard(InfoCardContent.CameraInfo)">List of supported Cameras</a>
   </div>
 
-  <svg [@reveal-up-2]="pageLoaded" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1257 748.53" height="30%">
+  <div *ngIf="uploader.isUploading"
+       class="info-container">
+    <h2>Uploading {{fileName}}...</h2>
+  </div>
+
+  <input type="file" ng2FileSelect [uploader]="uploader" />
+
+  <svg class="camera"
+       [@reveal-up-2]="pageLoaded"
+       xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 1257 748.53"
+       height="35%">
     <g id="Cam" class="cls-1">
       <rect id="shutter_release" class="cls-15" x="188" width="64" height="17" rx="8.5" ry="8.5"/>
       <rect class="cls-2" x="145" y="5" width="150" height="65" rx="12" ry="12"/>
@@ -98,30 +111,38 @@
   <div class="info-card">
 
     <div *ngIf="infoCardState == InfoCardContent.ExifData" id="info-exif-data" class="info-card-content">
+      <div>
         <h1>{{ exifData?.Model || '' }}</h1>
 
         <h4 class="exif-head-info">{{ (exifData?.DateTimeOriginal.day + '/' +
             exifData?.DateTimeOriginal.month + '/' +
             exifData?.DateTimeOriginal.year + '-' +
             exifData?.DateTimeOriginal.hour + ':' +
-            exifData?.DateTimeOriginal.minute) | amParse:'DD/MM/YYYY-h:mm' | amDateFormat:'LL'}}</h4>
+            exifData?.DateTimeOriginal.minute) | amParse:'DD/MM/YYYY-h:mm' | amDateFormat:'LL' }}</h4>
         <h4 class="exif-head-info">{{ exifData?.FocalLength }}</h4>
         <h4 class="exif-head-info">f/{{ exifData?.Aperture }}</h4>
         <h4 class="exif-head-info">ISO{{ exifData?.ISO }}</h4>
         <h4 class="exif-head-info">{{ exifData?.ShutterSpeed }}s</h4>
 
+        <h2 *ngIf="shutterCount">Shutter Count: {{ shutterCount }}</h2>
+        <h4 *ngIf="shutterCount">In Words: {{ toWords(shutterCount) }}</h4>
+        <h2 *ngIf="!shutterCount">Could not find Shutter Count Information in EXIF Data... 😥</h2>
+      </div>
 
-      <h2 *ngIf="shutterCount">Shutter Count: {{ shutterCount }}</h2>
-      <h4 *ngIf="shutterCount">In Words: {{ toWords(shutterCount) }}</h4>
-      <h2 *ngIf="!shutterCount">Could not find Shutter Count Information in EXIF Data... 😥</h2>
-
-      <div class="center-item show-exif-btn" [ngClass]="{'expanded': showExif}">
-        <span class="btn btn-bright" (click)="showExif = !showExif">
+      <div class="center-item show-exif-btn"
+           [@exif-show-btn]="showExif">
+        <span class="btn btn-bright"
+              (click)="showExif = !showExif">
             {{showExif ? 'Hide' : 'Show'}} Exif
         </span>
       </div>
 
-      <ul [ngClass]="{'expanded': showExif}" class="exif-list" [innerHTML]="formatedExifList(exifData)"></ul>
+      <ul class="exif-list"
+          [@exif-card-reveal]="showExif"
+          [innerHTML]="formatedExifList(exifData)"
+          [style.pointer-events]="showExif ? 'auto' : 'none'">
+
+      </ul>
     </div>
 
     <div *ngIf="infoCardState == InfoCardContent.CameraInfo" id="info-camera-info" class="info-card-content">

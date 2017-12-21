@@ -119,6 +119,10 @@ body {
   margin: 5vh 0;
 }
 
+#app .camera {
+  max-width: 90%;
+}
+
 /* FILE OVER PAGE */
 
 #file-over {
@@ -208,12 +212,7 @@ body {
 }
 
 #info .show-exif-btn {
-  transition: 0.4s ease-in-out;
-  transform: translateY(18vh) scale(1.3);
-}
 
-#info .show-exif-btn.expanded {
-  transform: translateY(0);
 }
 
 #info .exif-head-info {
@@ -238,15 +237,7 @@ body {
   position: relative;
   max-height: 55%;
   overflow: auto;
-  opacity: 0;
-  pointer-events: none;
   transition:opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
-}
-
-.exif-list.expanded {
-  opacity: 1;
-  pointer-events: auto;
-  transition:opacity 1s cubic-bezier(0, 0.76, 0.2, 1);
 }
 
 .exif-list div {
