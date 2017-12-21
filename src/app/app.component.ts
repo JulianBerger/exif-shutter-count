@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewChecked, Component} from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 
 enum InfoCardContent {
@@ -12,7 +12,7 @@ enum InfoCardContent {
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements AfterViewChecked{
   public uploadURL = 'http://localhost:8080/api/upload';
   public uploader: FileUploader;
   public isFileOverDropZone = false;
@@ -23,6 +23,7 @@ export class AppComponent {
   public showExif = false;
   public exifData = {};
   public shutterCount = 0;
+  public pageLoaded = false;
 
   constructor() {
     this.uploader = new FileUploader({
@@ -31,6 +32,12 @@ export class AppComponent {
     });
 
     this.uploader.response.subscribe(res => this.response = res);
+  }
+
+  ngAfterViewChecked() {
+    setTimeout(() => {
+      this.pageLoaded = true;
+    }, 2000);
   }
 
   public fileOverUploader(e: any): void {
@@ -61,6 +68,13 @@ export class AppComponent {
 
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) =>  {
       response = JSON.parse(response);
+      delete response.exif[ 'SourceFile' ];
+      delete response.exif[ 'errors' ];
+      delete response.exif[ 'ExifToolVersion' ];
+      delete response.exif[ 'FileName' ];
+      delete response.exif[ 'Directory' ];
+      delete response.exif[ 'ExifToolVersion' ];
+
       this.exifData = response.exif;
 
       // Clear uploader queue
