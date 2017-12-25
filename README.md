@@ -1,3 +1,6 @@
+
+[![Dependency Status](https://david-dm.org/JulianBerger/exif-shutter-count.svg?theme=shields.io)](https://david-dm.org/JulianBerger/exif-shutter-count)
+[![devDependency Status](https://david-dm.org/JulianBerger/exif-shutter-count/dev-status.svg?theme=shields.io)](https://david-dm.org/JulianBerger/exif-shutter-count#info=devDependencies)
 # ExifShutterCount
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.1.
