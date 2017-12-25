@@ -3,6 +3,7 @@
     "name"            : "Shutter.cc API",
     "script"          : "./api.js",
     "args"            : "-p 8081",
+    "ignoreWatch"     : "./log/",
     "out_file"        : "./log/api-shutter-cc-out.log",
     "error_file"      : "./log/api-shutter-cc-err.log",
     "log_date_format" : "YYYY-MM-DD HH:mm",
