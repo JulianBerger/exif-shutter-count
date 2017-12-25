@@ -7,11 +7,18 @@ const app = new Koa();
 const os = require('os');
 const path = require('path');
 const fs = require('fs-extra');
+const argv = require('minimist')(process.argv.slice(2));
 
 const { ExifTool } = require("exiftool-vendored");
 const exiftool = new ExifTool();
 
-const PORT = 8080;
+let PORT = 8080;
+
+if (argv.p) {
+  PORT = parseInt(argv.p, 10);
+}
+
+console.log('PORT: ' + PORT);
 
 exiftool.version().then( (version) => {
     console.log(`We're running ExifTool v${version}`);

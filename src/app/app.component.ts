@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AppAnimation } from './app.animation';
-
 import { environment } from '../environments/environment';
 import { FileUploader } from 'ng2-file-upload';
 
@@ -29,7 +28,6 @@ export class AppComponent {
   public shutterCount = 0;
 
   constructor() {
-    console.log('Upload URL: ' + environment.apiURL + '/upload');
     this.uploader = new FileUploader({
       url: environment.apiURL + '/upload',
       disableMultipart: false
