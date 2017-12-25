@@ -98,7 +98,7 @@ export class AppComponent {
 
       // Format Date/Time
       Object.keys(this.exifData).forEach((key) => {
-        if (this.exifData[key]['year']) {
+        if (this.exifData[key] && this.exifData[key]['year']) {
           console.log('got date: ' + JSON.stringify(this.exifData[key]));
         }
       });

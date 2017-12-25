@@ -114,15 +114,16 @@
       <div>
         <h1>{{ exifData?.Model || '' }}</h1>
 
-        <h4 class="exif-head-info">{{ (exifData?.DateTimeOriginal.day + '/' +
+        <h4 *ngIf="exifData?.DateTimeOriginal !== undefined"
+         class="exif-head-info">{{ (exifData?.DateTimeOriginal.day + '/' +
             exifData?.DateTimeOriginal.month + '/' +
             exifData?.DateTimeOriginal.year + '-' +
             exifData?.DateTimeOriginal.hour + ':' +
             exifData?.DateTimeOriginal.minute) | amParse:'DD/MM/YYYY-h:mm' | amDateFormat:'LL' }}</h4>
-        <h4 class="exif-head-info">{{ exifData?.FocalLength }}</h4>
-        <h4 class="exif-head-info">f/{{ exifData?.Aperture }}</h4>
-        <h4 class="exif-head-info">ISO{{ exifData?.ISO }}</h4>
-        <h4 class="exif-head-info">{{ exifData?.ShutterSpeed }}s</h4>
+        <h4 *ngIf="exifData?.FocalLength !== undefined" class="exif-head-info">{{ exifData?.FocalLength }}</h4>
+        <h4 *ngIf="exifData?.Aperture !== undefined" class="exif-head-info">f/{{ exifData?.Aperture }}</h4>
+        <h4 *ngIf="exifData?.ISO !== undefined" class="exif-head-info">ISO{{ exifData?.ISO }}</h4>
+        <h4 *ngIf="exifData?.ShutterSpeed !== undefined" class="exif-head-info">{{ exifData?.ShutterSpeed }}s</h4>
 
         <h2 *ngIf="shutterCount">Shutter Count: {{ shutterCount }}</h2>
         <h4 *ngIf="shutterCount">In Words: {{ toWords(shutterCount) }}</h4>
