@@ -1,6 +1,7 @@
-import {AfterViewChecked, Component} from '@angular/core';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { Component } from '@angular/core';
+import { AppAnimation } from './app.animation';
 
+import { environment } from '../environments/environment';
 import { FileUploader } from 'ng2-file-upload';
 
 enum InfoCardContent {
@@ -13,81 +14,9 @@ enum InfoCardContent {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  animations: [
-    trigger('reveal-up', [
-      transition('* => true', [
-        animate('0.6s ease-in', style({
-          transform: 'translateY(0) scale(1)',
-          opacity: 1
-        }))
-      ]),
-      state('false',
-        style({
-          transform: 'translateY(100vh) scale(0.7)',
-          opacity: 0
-        })
-      )
-    ]),
-    trigger('reveal-up-2', [
-      transition('* => true', [
-        animate('0.6s ease-in', style({
-          transform: 'translateY(0) scale(1)',
-          opacity: 1
-        }))
-      ]),
-      state('false',
-        style({
-          transform: 'translateY(200vh) scale(0.7)',
-          opacity: 0
-        })
-      )
-    ]),
-    trigger('card-show', [
-      transition('* => true', [
-        animate('0.4s ease-in', style({
-          transform: 'translateY(0) scale(1)',
-          opacity: 1
-        }))
-      ]),
-      transition('true => false', [
-        animate('0.2s ease-out', style({
-          transform: 'translateY(100vh) scale(0.3)',
-          opacity: 0
-        }))
-      ]),
-      state('false',
-        style({
-          transform: 'translateY(100vh)',
-          opacity: 0
-        })
-      )
-    ]),
-    trigger('exif-card-reveal', [
-      transition('* => true', [
-        animate('0.15s 0.8s ease-in', style({ transform: 'scale(1)', opacity: 1 }))
-      ]),
-      transition('true => false', [
-        animate('0.2s 0.2s ease-out', style({ transform: 'scale(0.8)', opacity: 0 }))
-      ]),
-      state('false',
-        style({ transform: 'scale(0.8)', opacity: 0 })
-      )
-    ]),
-    trigger('exif-show-btn', [
-      transition('* => true', [
-        animate('0.15s ease-in', style({ transform: 'translateY(0vh) scale(1)'}))
-      ]),
-      transition('true => false', [
-        animate('0.2s ease-out', style({ transform: 'translateY(18vh) scale(1.38)' }))
-      ]),
-      state('false',
-        style({ transform: 'translateY(18vh) scale(1.38)' })
-      )
-    ])
-  ]
+  animations: AppAnimation
 })
-export class AppComponent implements AfterViewChecked {
-  public uploadURL = 'http://localhost:8080/api/upload';
+export class AppComponent {
   public uploader: FileUploader;
   public fileName = '';
   public isFileOverDropZone = false;
@@ -98,19 +27,15 @@ export class AppComponent implements AfterViewChecked {
   public showExif = false;
   public exifData = {};
   public shutterCount = 0;
-  public pageLoaded = false;
 
   constructor() {
+    console.log('Upload URL: ' + environment.apiURL + '/upload');
     this.uploader = new FileUploader({
-      url: this.uploadURL,
+      url: environment.apiURL + '/upload',
       disableMultipart: false
     });
 
     this.uploader.response.subscribe(res => this.response = res);
-  }
-
-  ngAfterViewChecked() {
-      this.pageLoaded = true;
   }
 
   public fileOverUploader(e: any): void {

@@ -6,7 +6,7 @@
      [uploader]="uploader">
 
   <div *ngIf="!uploader.isUploading"
-       [@reveal-up]="pageLoaded"
+       [@reveal-up]="true"
        class="info-container">
     <h2>Upload a RAW/JPEG from Your Camera to get your Shutter Count</h2>
     <a href="#" (click)="toggleInfoCard(InfoCardContent.CameraInfo)">List of supported Cameras</a>
@@ -14,13 +14,13 @@
 
   <div *ngIf="uploader.isUploading"
        class="info-container">
-    <h2>Uploading {{fileName}}...</h2>
+    <h2>Uploading {{fileName}}... [{{ uploader?.queue[0]?.progress }}%]</h2>
   </div>
 
-  <input type="file" ng2FileSelect [uploader]="uploader" />
+  <input style="display: none" *ngIf="!uploader?.isUploading" type="file" ng2FileSelect [uploader]="uploader" />
 
   <svg class="camera"
-       [@reveal-up-2]="pageLoaded"
+       [@reveal-up-2]="true"
        xmlns="http://www.w3.org/2000/svg"
        viewBox="0 0 1257 748.53"
        height="35%">
@@ -133,7 +133,7 @@
            [@exif-show-btn]="showExif">
         <span class="btn btn-bright"
               (click)="showExif = !showExif">
-            {{showExif ? 'Hide' : 'Show'}} Exif
+            {{ showExif ? 'Hide' : 'Show' }} Exif
         </span>
       </div>
 

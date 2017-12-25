@@ -42,6 +42,11 @@ body {
   font-smoothing: antialiased!important;
 }
 
+span, h1, h2, h3, h4, h5 {
+  color: var(--text-primary);
+}
+
+
 .center-item {
   margin: auto;
   display: table;
@@ -212,7 +217,7 @@ body {
 }
 
 #info .show-exif-btn {
-
+  margin-top: 16px;
 }
 
 #info .exif-head-info {
@@ -415,7 +420,7 @@ footer a:hover {
 
 .cls-17 {
   font-size: 45px;
-  fill: #0f0f0f;
+  fill: #cccccc;
   font-family: 'Karla', sans-serif;
   font-weight: bolder;
 }
