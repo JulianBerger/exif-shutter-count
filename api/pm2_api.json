@@ -1,0 +1,12 @@
+{
+  "apps" : [{
+    "name"            : "Shutter.cc API",
+    "script"          : "./api.js",
+    "args"            : "-p 8081",
+    "log_file"        : "log/api-outerr.log",
+    "out_file"        : "log/api-out.log",
+    "error_file"      : "log/api-err.log",
+    "log_date_format" : "YYYY-MM-DD HH:mm",
+    "watch"           : true
+  }]
+}

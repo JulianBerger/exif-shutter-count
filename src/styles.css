@@ -97,7 +97,6 @@ span, h1, h2, h3, h4, h5 {
   align-items: center;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 1vh 2vw;
   margin-top: -10vh;
 }
 
@@ -121,7 +120,7 @@ span, h1, h2, h3, h4, h5 {
 }
 
 #app .info-container {
-  margin: 5vh 0;
+  margin: 5vh 2vw;
 }
 
 #app .camera {

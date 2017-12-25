@@ -18,8 +18,6 @@ if (argv.p) {
   PORT = parseInt(argv.p, 10);
 }
 
-console.log('PORT: ' + PORT);
-
 exiftool.version().then( (version) => {
     console.log(`We're running ExifTool v${version}`);
 });
