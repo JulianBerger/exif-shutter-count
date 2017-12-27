@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AppAnimation } from './app.animation';
+import { Title } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 import { FileUploader } from 'ng2-file-upload';
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 enum InfoCardContent {
   Closed = 0,
@@ -27,7 +29,10 @@ export class AppComponent {
   public exifData = {};
   public shutterCount = 0;
 
-  constructor() {
+  constructor(private titleService: Title,
+              private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
+    this.titleService.setTitle('Shutter.cc 📷 - Shutter Count / EXIF');
+
     this.uploader = new FileUploader({
       url: environment.apiURL + '/upload',
       disableMultipart: false
