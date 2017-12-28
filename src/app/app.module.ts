@@ -11,7 +11,9 @@ import { AppComponent } from './app.component';
 
 const ROUTES: Routes = [
   { path: '',       component: AppComponent },
-  { path: 'about',  component: AppComponent }
+  { path: 'about',  component: AppComponent },
+  { path: 'supported-cameras',  component: AppComponent },
+  { path: 'exif-info',  component: AppComponent }
 ];
 
 @NgModule({

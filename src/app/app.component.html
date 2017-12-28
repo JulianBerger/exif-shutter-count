@@ -9,7 +9,7 @@
        [@reveal-up]="true"
        class="info-container">
     <h2>Upload a RAW/JPEG from Your Camera to get your Shutter Count</h2>
-    <a href="#" (click)="toggleInfoCard(InfoCardContent.CameraInfo)">List of supported Cameras</a>
+    <a routerLink="/supported-cameras">List of supported Cameras</a>
   </div>
 
   <div *ngIf="uploader.isUploading"
@@ -154,8 +154,8 @@
       <h1>ABOUT</h1>
     </div>
 
-    <div class="info-close-btn" (click)="toggleInfoCard(InfoCardContent.Closed)">
-      <span>x</span>
+    <div class="info-close-btn">
+      <span routerLink="/">x</span>
     </div>
 
   </div>
@@ -169,10 +169,10 @@
   </div>
 
   <div class="footer-right link-list">
-    <span (click)="toggleInfoCard(InfoCardContent.About)">About</span>
-    <span>Link 2</span>
-    <span>Link 3</span>
-    <span>Link 4</span>
+    <a routerLink="/about">About</a>
+    <a routerLink="/about">Link 2</a>
+    <a routerLink="/about">Link 3</a>
+    <a routerLink="/about">Link 4</a>
   </div>
 
 </footer>

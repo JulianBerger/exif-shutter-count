@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 import { FileUploader } from 'ng2-file-upload';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+import {NavigationStart, Router} from '@angular/router';
 
 enum InfoCardContent {
   Closed = 0,
@@ -29,8 +30,25 @@ export class AppComponent {
   public exifData = {};
   public shutterCount = 0;
 
-  constructor(private titleService: Title,
+  constructor(private router: Router,
+              private titleService: Title,
               private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
+
+    // Handle Routes
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        if (event.url === '/about') {
+          this.toggleInfoCard(InfoCardContent.About);
+        } else if (event.url === '/supported-cameras') {
+          this.toggleInfoCard(InfoCardContent.CameraInfo);
+        } else if (event.url === '/exif-info') {
+          this.toggleInfoCard(InfoCardContent.ExifData);
+        } else {
+          this.toggleInfoCard(InfoCardContent.Closed);
+        }
+      }
+    });
+
     this.titleService.setTitle('Shutter.cc 📷 - Shutter Count / EXIF');
 
     this.uploader = new FileUploader({
@@ -110,7 +128,8 @@ export class AppComponent {
 
       console.log(`Make: ${this.exifData['Make']}, Camera: ${this.exifData['Model']}, ShutterCount: ${this.shutterCount}`);
 
-      this.toggleInfoCard(InfoCardContent.ExifData);
+      // this.toggleInfoCard(InfoCardContent.ExifData);
+      this.router.navigate(['exif-info']);
     };
 
     this.uploader.uploadAll();
