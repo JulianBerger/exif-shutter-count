@@ -1,5 +1,6 @@
 /* global styles */
 @import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 /* VARIABLES */
 
@@ -46,6 +47,19 @@ span, h1, h2, h3, h4, h5 {
   color: var(--text-primary);
 }
 
+label {
+  color: var(--text-primary);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+label:hover{
+  text-decoration: underline;
+}
+
+#file-upload-select {
+  display:none;
+}
 
 .center-item {
   margin: auto;
@@ -231,6 +245,26 @@ span, h1, h2, h3, h4, h5 {
   content: "````";
 }
 
+#info a {
+  color: var(--link-primary);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .15s ease-out 0s;
+  font-weight: bold;
+}
+
+#info h5 {
+  margin-bottom: 0;
+}
+
+#info .bold {
+  font-weight: bold;
+}
+
+#info .open-source-libs {
+  font-size: 10pt;
+}
+
 /* EXIF MARKUP */
 .exif-list {
   display: block;
@@ -406,7 +440,7 @@ footer a:hover {
 }
 
 .cls-15 {
-  fill: #ea1313;
+  fill: #ec3f36;
 }
 
 .cls-16 {
@@ -417,9 +451,9 @@ footer a:hover {
   user-select: none;
 }
 
-.cls-17 {
-  font-size: 45px;
-  fill: #cccccc;
-  font-family: 'Karla', sans-serif;
+.shutter-cc-logo {
+  font-size: 42pt;
+  fill: #ec3f36;
+  font-family: 'Pacifico', sans-serif;
   font-weight: bolder;
 }

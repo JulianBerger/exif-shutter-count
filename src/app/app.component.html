@@ -8,7 +8,10 @@
   <div *ngIf="!uploader.isUploading"
        [@reveal-up]="true"
        class="info-container">
-    <h2>Upload a RAW/JPEG from Your Camera to get your Shutter Count</h2>
+    <input type="file" id="file-upload-select" ng2FileSelect
+           [uploader]="uploader"
+           (onFileSelected)="fileDropped($event)">
+    <h2><label for="file-upload-select">Upload a RAW/JPEG</label> from Your Camera to get your Shutter Count</h2>
     <a routerLink="/supported-cameras">List of supported Cameras</a>
   </div>
 
@@ -96,7 +99,7 @@
       <text class="cls-16" transform="translate(903.75 473.01) rotate(104.06)">e</text>
       <text class="cls-16" transform="translate(899.26 491.35) rotate(110.13)">d</text>
       <text class="cls-16" transform="translate(891.62 511.49) rotate(114.67)">!</text>
-      <text class="cls-17" transform="translate(625 115)">Shutter.cc</text>
+      <text class="shutter-cc-logo" transform="translate(610 125)">Shutter.cc</text>
     </g>
   </svg>
 
@@ -126,7 +129,7 @@
         <h4 *ngIf="exifData?.ShutterSpeed !== undefined" class="exif-head-info">{{ exifData?.ShutterSpeed }}s</h4>
 
         <h2 *ngIf="shutterCount">Shutter Count: {{ shutterCount }}</h2>
-        <h4 *ngIf="shutterCount">In Words: {{ toWords(shutterCount) }}</h4>
+        <h4 *ngIf="shutterCountWords">In Words: {{ shutterCountWords }}</h4>
         <h2 *ngIf="!shutterCount">Could not find Shutter Count Information in EXIF Data... 😥</h2>
       </div>
 
@@ -151,7 +154,27 @@
     </div>
 
     <div *ngIf="infoCardState == InfoCardContent.About" id="info-about" class="info-card-content">
-      <h1>ABOUT</h1>
+      <h1 class="shutter-cc-logo">Shutter.cc</h1>
+      <p>
+        <span class="bold">Shutter.cc</span> uses
+        <a target="_blank" href="https://sno.phy.queensu.ca/~phil/exiftool/">ExifTool</a>
+        to read out EXIF-Data
+      </p>
+
+      <div>
+        <h5>Open Source Libraries used</h5>
+        <ul class="open-source-libs">
+          <li><a target="_blank" href="https://github.com/angular/angular.js">AngularJS</a></li>
+          <li><a target="_blank" href="https://github.com/koajs/koa">koa</a></li>
+          <li><a target="_blank" href="https://github.com/valor-software/ng2-file-upload">ng2-file-upload</a></li>
+          <li><a target="_blank" href="https://github.com/mceachen/exiftool-vendored.js">exiftool-vendored</a></li>
+        </ul>
+
+        <p>See all Libraries used in the
+          <a target="_blank" href="https://github.com/JulianBerger/exif-shutter-count">#GitHub Repo</a>
+        </p>
+      </div>
+
     </div>
 
     <div class="info-close-btn">
