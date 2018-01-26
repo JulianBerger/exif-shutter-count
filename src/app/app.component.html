@@ -11,8 +11,8 @@
     <input type="file" id="file-upload-select" ng2FileSelect
            [uploader]="uploader"
            (onFileSelected)="fileDropped($event)">
-    <h2><label for="file-upload-select">Upload a RAW/JPEG</label> from Your Camera to get your Shutter Count</h2>
-    <a routerLink="/supported-cameras">List of supported Cameras</a>
+    <h2><label for="file-upload-select">Upload a RAW/JPEG</label> from Your Camera to get the Shutter Count</h2>
+    <a routerLink="/supported-cameras" class="overline">List of supported Cameras</a>
   </div>
 
   <div *ngIf="uploader.isUploading"
@@ -99,7 +99,10 @@
       <text class="cls-16" transform="translate(903.75 473.01) rotate(104.06)">e</text>
       <text class="cls-16" transform="translate(899.26 491.35) rotate(110.13)">d</text>
       <text class="cls-16" transform="translate(891.62 511.49) rotate(114.67)">!</text>
-      <text class="shutter-cc-logo" transform="translate(610 125)">Shutter.cc</text>
+
+      <a xlink:href="https://shutter.cc" xlink:title="Shutter.cc" class="" transform="translate(610 125)">
+        <text class="shutter-cc-logo">Shutter.cc</text>
+      </a>
     </g>
   </svg>
 
@@ -150,7 +153,22 @@
     </div>
 
     <div *ngIf="infoCardState == InfoCardContent.CameraInfo" id="info-camera-info" class="info-card-content">
-      <h1>CAMERAINFO</h1>
+      <h1>Tested Cameras</h1>
+
+      <ul class="brand-selection-list">
+        <li *ngFor="let brand of testedCameras?.brands"
+            [ngClass]="{'selected' : selectedBrand === brand.name }"
+            (click)="selectedBrand = brand.name">
+          {{ brand.name }}
+        </li>
+      </ul>
+
+      <ul class="tested-cameras-list">
+        <li *ngFor="let cam of testedCameras?.getBrandByName(selectedBrand).cameras">
+          {{ selectedBrand + ' ' + cam.name }}
+        </li>
+      </ul>
+
     </div>
 
     <div *ngIf="infoCardState == InfoCardContent.About" id="info-about" class="info-card-content">
@@ -171,7 +189,7 @@
         </ul>
 
         <p>See all Libraries used in the
-          <a target="_blank" href="https://github.com/JulianBerger/exif-shutter-count">#GitHub Repo</a>
+          <a target="_blank" href="https://github.com/JulianBerger/exif-shutter-count">GitHub Repo</a>
         </p>
       </div>
 
@@ -193,9 +211,6 @@
 
   <div class="footer-right link-list">
     <a routerLink="/about">About</a>
-    <a routerLink="/about">Link 2</a>
-    <a routerLink="/about">Link 3</a>
-    <a routerLink="/about">Link 4</a>
   </div>
 
 </footer>

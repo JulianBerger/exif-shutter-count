@@ -125,12 +125,16 @@ label:hover{
 #app a {
   color: var(--link-primary);
   cursor: pointer;
-  text-decoration: overline;
+  text-decoration: none;
   transition: all .15s ease-out 0s;
 }
 
 #app a:hover {
   color: var(--link-primary-hover);
+}
+
+#app a.overline {
+  text-decoration: overline !important;
 }
 
 #app .info-container {
@@ -308,19 +312,37 @@ label:hover{
   word-wrap: break-word;
 }
 
+.brand-selection-list {
+  display: inline;
+  list-style-type:none;
+  padding: 0;
+}
+
+.brand-selection-list>li {
+  display: inline;
+  list-style-type:none;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--link-primary);
+  font-size: 14pt;
+}
+
+.brand-selection-list>li:hover {
+  color: var(--link-primary-hover);
+}
+
+.brand-selection-list>li.selected {
+  font-weight: bolder;
+}
 
 /* FOOTER */
 
 footer {
-  width: 100%;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   position: relative;
-  padding: 1vh 2vw;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  padding: 2.5vh 3.6vw;
   display: flex;
+  left: 0;
+  right: 0;
 }
 
 footer.footer-fixed {
@@ -337,12 +359,9 @@ footer .footer-left {
 }
 
 footer .footer-right {
-  display: flex;
-  flex: 1;
   text-align: right;
-  align-items: baseline;
+  align-items: right;
   justify-content: flex-start;
-  right: 0;
 }
 
 footer span, h1, h2, h3 {

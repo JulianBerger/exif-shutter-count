@@ -6,6 +6,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { NavigationStart, Router } from '@angular/router';
 import { numberToWords } from 'number-to-words';
+import { testedCameras } from './tested-cameras';
 
 enum InfoCardContent {
   Closed = 0,
@@ -25,7 +26,9 @@ export class AppComponent {
   public isFileOverDropZone = false;
   public isFileOverPage = false;
   public response = '';
-  public InfoCardContent = InfoCardContent;    // import enum
+  public InfoCardContent = InfoCardContent;     // import enum
+  public testedCameras = testedCameras;         // import testedCameras
+  public selectedBrand = testedCameras.brands[0].name;  // selected brand on tested cameras page
   public infoCardState = this.InfoCardContent.Closed;
   public showExif = false;
   public exifData = {};
@@ -59,6 +62,7 @@ export class AppComponent {
     });
 
     this.uploader.response.subscribe(res => this.response = res);
+    console.log(testedCameras);
   }
 
   public fileOverUploader(e: any): void {
