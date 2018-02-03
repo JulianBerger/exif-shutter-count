@@ -1,3 +1,4 @@
+![Shutter.cc Header Image](https://raw.githubusercontent.com/JulianBerger/exif-shutter-count/master/Design/shutter-cc-head.png)
 
 [![Dependency Status](https://david-dm.org/JulianBerger/exif-shutter-count.svg?theme=shields.io)](https://david-dm.org/JulianBerger/exif-shutter-count)
 [![devDependency Status](https://david-dm.org/JulianBerger/exif-shutter-count/dev-status.svg?theme=shields.io)](https://david-dm.org/JulianBerger/exif-shutter-count#info=devDependencies)
