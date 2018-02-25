@@ -4,7 +4,7 @@
     "script"          : "./api.js",
     "args"            : "-p 8081",
     "watch"           : true,
-    "ignore_watch"    : "./log/",
+    "ignore_watch"    : "log",
     "out_file"        : "./log/api-shutter-cc-out.log",
     "error_file"      : "./log/api-shutter-cc-err.log",
     "log_date_format" : "YYYY-MM-DD HH:mm"
