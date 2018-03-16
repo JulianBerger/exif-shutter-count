@@ -229,8 +229,7 @@ label:hover{
   right: 0;
   bottom: 0;
   left: 0;
-
-  padding: 1em 2.4em;
+  padding: 6.5vh 5vw;
 }
 
 #info .show-exif-btn {
