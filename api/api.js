@@ -36,7 +36,7 @@ app.use( (ctx, next) => new Promise( (resolve, reject) => {
     }
 
     const file = ctx.request.body.files.file;
-    console.log(file);
+    //console.log(file);
     const tmpFilePath = path.join(os.tmpdir(), Math.random().toString() + file.name);
     const readStream = fs.createReadStream(file.path);
     const writestream = fs.createWriteStream(tmpFilePath);

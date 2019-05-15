@@ -24,7 +24,7 @@ const ROUTES: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES, { enableTracing: true }),
-    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
+    Angulartics2Module.forRoot(),
     FileUploadModule,
     MomentModule
   ],

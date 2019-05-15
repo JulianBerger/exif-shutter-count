@@ -36,9 +36,10 @@ export class AppComponent {
   public shutterCountWords = '';
 
   constructor(private router: Router,
-              private titleService: Title,
-              private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
+    private titleService: Title,
+    private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
 
+      this.angulartics2GoogleAnalytics.startTracking();
     // Handle Routes
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -92,14 +93,14 @@ export class AppComponent {
       this.fileName = this.uploader.queue[0]._file.name;
     }
 
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) =>  {
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       response = JSON.parse(response);
-      delete response.exif[ 'SourceFile' ];
-      delete response.exif[ 'errors' ];
-      delete response.exif[ 'ExifToolVersion' ];
-      delete response.exif[ 'FileName' ];
-      delete response.exif[ 'Directory' ];
-      delete response.exif[ 'ExifToolVersion' ];
+      delete response.exif['SourceFile'];
+      delete response.exif['errors'];
+      delete response.exif['ExifToolVersion'];
+      delete response.exif['FileName'];
+      delete response.exif['Directory'];
+      delete response.exif['ExifToolVersion'];
 
       this.exifData = response.exif;
 
@@ -159,7 +160,7 @@ export class AppComponent {
   public formatedExifList(exif: Object) {
     let returnStr = '';
 
-    Object.keys(exif).forEach(function(key) {
+    Object.keys(exif).forEach(function (key) {
       returnStr += '<div>';
       returnStr += '<li class="exif-key">';
       returnStr += key.toString();
